@@ -18,16 +18,13 @@ import org.hibernate.HibernateException;
 
 /**
  *
- * @author Computer
+ * @author USUARIO
  */
 @ManagedBean
 //@RequestScoped
 @ViewScoped
 public class MascotaBean implements Serializable {
 
-    /**
-     * SE COMUNICA CON EL DAO
-     */
     private Mascota mascota;
 
     public MascotaBean() {
@@ -49,7 +46,7 @@ public class MascotaBean implements Serializable {
             MascotaDao mascotaDao = new MascotaDao();
             boolean respuesta = mascotaDao.guardarMascota(mascota);
             if (respuesta) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se regidtro correctamente"));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se registro con exito"));
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se puedo registrar"));
             }
@@ -57,7 +54,7 @@ public class MascotaBean implements Serializable {
             ///transation.rollback();  -- regresa a la anterior
             System.out.println("Error::: " + e);
         }
-        return "/index";
+        return "/RegistroMascota";
     }
 
     public String actualizarMascota() {
@@ -65,7 +62,7 @@ public class MascotaBean implements Serializable {
             MascotaDao mascotaDao = new MascotaDao();
             boolean respuesta = mascotaDao.actualizarMascota(mascota);
             if (respuesta){
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se actualizo correctamente"));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se actualizo con exito"));
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se puedo actualizar"));
             }
@@ -73,7 +70,7 @@ public class MascotaBean implements Serializable {
             ///transation.rollback();  -- regresa a la anterior
             System.out.println("Error::: " + e);
         }
-        return "/index";
+        return "/RegistroMascota";
 
     }
 
@@ -88,15 +85,15 @@ public class MascotaBean implements Serializable {
         MascotaDao mascotaDao = new MascotaDao();
         boolean respuesta = mascotaDao.eliminarMascota(mascota);
         if (respuesta) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se elimino correctamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se elimino con exito"));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se puedo eliminar"));
         }
-        return "/index";
+        return "/RegistroMascota";
     }
 
     public String limpiar() {
-        return "/index";
+        return "/RegistroMascota";
     }
 
 }

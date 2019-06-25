@@ -8,26 +8,20 @@ package interfaces;
 import entidades.Mascota;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Session;
+
 
 /**
  *
- * @author Computer
+ * @author USUARIO
  */
 public interface IMascota {
 
     public abstract boolean guardarMascota(Mascota mascota);
-
     public abstract ArrayList<Mascota> listarMascotas();
-
     public abstract boolean actualizarMascota(Mascota mascota);
-
     public abstract List<Mascota> listarMascotaRaza(String raza);
-
     public abstract List<Mascota> listarNombreMascota(String nombreMascota);
-
     public abstract Integer ContadorMascota();
-
     public abstract boolean eliminarMascota(Mascota mascota);
 
 }

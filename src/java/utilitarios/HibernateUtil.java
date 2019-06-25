@@ -10,7 +10,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
  *
- * @author USUARIOWIN10
+ * @author USUARIO
  */
 public class HibernateUtil {
 
