@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet prueba</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./TemplateVeterinaria.xhtml">
+            <ui:define name="content">
+                <p:growl id="msj" autoUpdate="true"/>
+                <div align="center">
+                    <h:form id="formtipodocumento">
+                        <p:panel style="width: 40%">
+                            <f:facet name="header">
+                                <p:column>
+                                    <p:outputLabel value="Tipo Documento"/>
+                                </p:column>
+                            </f:facet>
+                            <p:panelGrid>
+
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="ID"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText value="#{tipoDocumentoBean.tipodocumentos.idTipoDocumento}"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Descripcion"/>
+
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText value="#{tipoDocumentoBean.tipodocumentos.discripcion}"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Tipo Documento"/> 
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText value="#{tipoDocumentoBean.tipodocumentos.tipoDocumentocol}"/>
+                                    </p:column>
+                                </p:row>
+                           
+                            </p:panelGrid>
+                            <p:commandButton rendered="#{!tipoDocumentoBean.banderaSelect}" value="Guardar" action="#{tipoDocumentoBean.guardarTipoDocumento()}" update=":formData:dataTabledocumento,:formtipodocumento" />
+                            <p:commandButton value="Nuevo" action="#{mascotaBeans.limpiar()}" update=":formData:dataTabledocumento, :formtipodocumento"/>
+                            <p:commandButton rendered="#{tipoDocumentoBean.banderaSelect}" value="Actualizar" action="#{tipoDocumentoBean.actualizarTipoDocumento()}" update=":formData:dataTabledocumento,:formtipodocumento"/>
+
+                        </p:panel>
+                    </h:form>
+
+                    <h:form id="formData">
+                        <p:dataTable rowKey="#{tipodocumentos.idTipoDocumento}" selection="#{tipoDocumentoBean.tipodocumentos}" selectionMode="single" id="dataTabledocumento" var="tipodocumento" value="#{tipoDocumentoBean.listarTipoDocumentos()}" style="width: 40%">
+                            <p:ajax event="rowSelect" update=":formMascota" listener="#{tipoDocumentoBean.selectBandera()}"/>
+                            <p:column headerText="Código">
+                                <p:outputLabel value="#{tipodocumentos.idTipoDocumento}"/>
+                            </p:column>
+                            <p:column headerText="Descripcion">
+                                <p:outputLabel value="#{tipodocumentos.discripcion}"/>
+                            </p:column>
+                            <p:column headerText="Tipo Documento">
+                                <p:outputLabel value="#{tipodocumentos.tipoDocumentocol}"/>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Eliminar" action="#{tipoDocumentoBean.eliminar(tipodocumento)}" update=":formData:dataTabledocumento,:formtipodocumento"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
